@@ -1,0 +1,45 @@
+version: '4'
+
+services:
+  webapp:
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile
+    volumes: 
+      - ./webapp:/app
+    ports: 
+      - 8080:8080
+    networks: 
+      - chat-service-network
+    env_file: 
+      - ./webapp/.env
+  database:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+    networks:
+      - chat-service-network
+
+  api-server:
+    build:
+      context: ./api-server
+      dockerfile: Dockerfile
+    volumes: 
+      - ./api-server:/app
+    ports: 
+      - 3000:3000
+    networks: 
+      - chat-service-network
+    env_file: 
+      - ./api-server/.development.env
+    depends_on: 
+      - database
+
+networks:
+  chat-service-network:
+
+volumes: 
+  mongodb:
