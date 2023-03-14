@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { UserRepository } from '../user/user.repository';
 import { JwtService } from '@nestjs/jwt';
-import { compare, hash } from 'bcrypt';
 import { JwtPayloadDto } from './dto/jwt-payload.dto';
 import { GetTokensDto } from './dto/get-tokens.dto';
 import { RequestCreateUserDto } from '../user/dto/create-user.dto';
 import { User } from '../user/schemas/user.schema';
 import { RequestSignInDto } from './dto/request-sign-in.dto';
+import { hash, compare } from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -83,11 +83,11 @@ export class AuthService {
   }
 
   async hash(tx: string) {
-    return await hash(tx, 12);
+    return hash(tx, 12);
   }
 
   async compare(p1, p2) {
-    return await compare(p1, p2);
+    return compare(p1, p2);
   }
 
   async refreshAccessToken(
