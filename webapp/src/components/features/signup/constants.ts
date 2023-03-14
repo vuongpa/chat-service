@@ -1,0 +1,1 @@
+export const steps = ['Email', 'Cập nhật'];

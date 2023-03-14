@@ -1,0 +1,83 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+  ],
+  "root": true,
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "ignorePatterns": [".eslintrc"],
+  "rules": {
+    "quotes": [2, "single"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "space-infix-ops": 2,
+    "space-before-blocks": 2,
+    "jsx-quotes": [2, "prefer-double"],
+    "object-curly-spacing": [2, "always"],
+    "comma-dangle": [2, "always-multiline"],
+    "keyword-spacing": 2,
+    "no-empty": 1,
+    "no-extra-semi": 2,
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "indent": "off",
+    "@typescript-eslint/indent": [2, 2],
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@next/next/no-sync-scripts": "off",
+    "@next/next/no-html-link-for-pages": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+
+    "no-mixed-spaces-and-tabs": 0,
+    "promise/catch-or-return": 0,
+    "promise/always-return": 0,
+    "jsx-a11y/alt-text": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/iframe-has-title": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "react/no-did-mount-set-state": 0,
+    "react/no-multi-comp": 0,
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "react/sort-comp": 0,
+    "react/sort-prop-types": 0,
+    "react/no-danger": 0,
+    "require-jsdoc": 0,
+    "array-callback-return": 0,
+    "prefer-destructuring": 0,
+    "no-case-declarations": 0,
+    "no-mixed-operators": 0,
+    "no-return-await": 0,
+    "no-plusplus": 0,
+    "no-use-before-define": 0,
+    "no-useless-escape": 0,
+    "no-nested-ternary": 0,
+    "no-await-in-loop": 0,
+    "prefer-spread": 0,
+    "id-length": 0,
+    "consistent-return": 0,
+    "valid-jsdoc": 0,
+    "max-len": 0,
+    "radix": 0,
+    "no-tabs": 0,
+    "no-unused-vars": 0,
+    "camelcase": 0,
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}
