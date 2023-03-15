@@ -1,9 +1,10 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { BaseEntity } from 'src/base/base.schema';
 
 export type DeviceDocument = HydratedDocument<Device>;
 
+@Schema({ timestamps: true })
 export class Device extends BaseEntity {
   @Prop({ required: true })
   deviceToken: string;

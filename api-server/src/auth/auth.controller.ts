@@ -12,13 +12,14 @@ import { AuthService } from './auth.service';
 import { RequestSignInDto } from './dto/request-sign-in.dto';
 import { JwtGuard } from './guards/jwt.guard';
 import { JwtPayloadDto } from './dto/jwt-payload.dto';
+import { RequestSignUpDto } from './dto/request-sign-up.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
-  async signUp(@Body() requestSignUp: RequestSignInDto) {
+  async signUp(@Body() requestSignUp: RequestSignUpDto) {
     try {
       return await this.authService.signUp(requestSignUp);
     } catch (err) {
@@ -50,5 +51,11 @@ export class AuthController {
     } catch (err) {
       throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('profile')
+  async getProfile(@Request() request) {
+    return request.user;
   }
 }

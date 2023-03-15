@@ -54,22 +54,15 @@ export class AuthService {
   async getTokens({ email, userId }: GetTokensDto): Promise<JwtPayloadDto> {
     const refreshTokenExpiredIn = this.config.get('JWT_REFRESH_TOKEN_EXPIRED');
     const accessTokenExpiredIn = this.config.get('JWT_ACCESS_TOKEN_EXPIRED');
-    const jwtAccSecret = this.config.get('JWT_ACCESS_TOKEN_SECRET');
     const jwtRefSecret = this.config.get('JWT_REFRESH_TOKEN_SECRET');
 
-    const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(
-        { email, userId },
-        { secret: jwtAccSecret, expiresIn: accessTokenExpiredIn },
-      ),
-      this.jwtService.signAsync(
-        { email, userId },
-        { secret: jwtRefSecret, expiresIn: refreshTokenExpiredIn },
-      ),
-    ]);
+    const refreshToken = await this.jwtService.signAsync(
+      { username: email, sub: userId },
+      { secret: jwtRefSecret, expiresIn: refreshTokenExpiredIn },
+    );
 
     return {
-      accessToken,
+      accessToken: this.jwtService.sign({ username: email, sub: userId }),
       refreshToken,
       accessTokenExpiredIn,
     };

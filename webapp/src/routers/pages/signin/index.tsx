@@ -30,16 +30,16 @@ export default function SignInPage() {
   const navigate = useNavigate();
   
   const onSubmit = (data: AnyObject) => {
-    formUtils.submitForm(data, {
+    formUtils.submitForm({
       method: 'POST',
-      endpoint: '/signin',
+      endpoint: '/auth/signin',
       onGotSuccess: response => {
         setTokenToCookies(response.data);
         navigate('/');
       },
       notify: true,
       successMessage: 'Đăng nhập thành công',
-    });
+    }, data);
   };
 
   return (
@@ -59,7 +59,7 @@ export default function SignInPage() {
         <Typography component="h1" variant="h5">Đăng nhập</Typography>
           
         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
-          <CEmail control={control} />
+          <CEmail name="username" control={control} />
           <CPassword control={control} />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

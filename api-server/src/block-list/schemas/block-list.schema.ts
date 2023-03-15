@@ -1,10 +1,11 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { BaseEntity } from 'src/base/base.schema';
 import { User } from 'src/user/schemas/user.schema';
 
 export type BlockListDocument = HydratedDocument<BlockList>;
 
+@Schema({ timestamps: true })
 export class BlockList extends BaseEntity {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
