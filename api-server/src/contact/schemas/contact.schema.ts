@@ -1,9 +1,10 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { BaseEntity } from 'src/base/base.schema';
 
 export type ContactDocument = HydratedDocument<Contact>;
 
+@Schema({ timestamps: true })
 export class Contact extends BaseEntity {
   @Prop({ required: true })
   firstName: string;

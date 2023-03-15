@@ -1,29 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useIsConnected, useSocketConnect, useSocketDisconnect } from './socket/hooks';
 import { socket } from './socket';
+import { Button } from '@mui/material';
+import { formUtils } from 'utils/form-utils';
 
 function App() {
-  const isSocketConnected = useIsConnected();
-  const socketConnect = useSocketConnect();
-  const socketDisconnect = useSocketDisconnect();
-  const [message, setMessage] = useState<string>('');
+  // const isSocketConnected = useIsConnected();
+  // const socketConnect = useSocketConnect();
+  // const socketDisconnect = useSocketDisconnect();
+  // const [message, setMessage] = useState<string>('');
 
-  useEffect(() => {
-    socket.on('connect', socketConnect);
-    socket.on('disconnect', socketDisconnect);
-    socket.on('sendMessage', (message) => {
-      console.log('message');
+  // useEffect(() => {
+  //   socket.on('connect', socketConnect);
+  //   socket.on('disconnect', socketDisconnect);
+  //   socket.on('sendMessage', (message) => {
+  //     console.log('message');
+  //   });
+
+  //   return () => {
+  //     socket.off('connect', socketConnect);
+  //     socket.off('disconnect', socketDisconnect);
+  //   };
+  // }, []);
+
+  function callApi() {
+    formUtils.submitForm({
+      method: 'GET',
+      endpoint: '/users',
     });
-
-    return () => {
-      socket.off('connect', socketConnect);
-      socket.off('disconnect', socketDisconnect);
-    };
-  }, []);
+  }
 
   return (
     <div className="App">
-      <div>{`Status: ${isSocketConnected}`}</div>
+      <Button onClick={callApi}>call api</Button>
+      {/* <div>{`Status: ${isSocketConnected}`}</div>
       <button onClick={() => socket.connect()}>Connect</button>
       <button onClick={() => socket.disconnect()}>Disconnect</button>
       <form
@@ -41,7 +51,7 @@ function App() {
         }}>
         <input value={message} onChange={(e) => setMessage(e.target.value)} name="message" />
         <button type="submit">submit</button>
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { BaseEntity } from 'src/base/base.schema';
 import { Conversation } from '../../conversation/schemas/conversation.schema';
@@ -6,6 +6,7 @@ import { User } from '../../user/schemas/user.schema';
 
 export type MessageDocument = HydratedDocument<Message>;
 
+@Schema({ timestamps: true })
 export class Message extends BaseEntity {
   @Prop()
   guild: string;

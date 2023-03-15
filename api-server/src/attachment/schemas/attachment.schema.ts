@@ -1,10 +1,11 @@
 import { BaseEntity } from '../../base/base.schema';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Message } from '../../message/schemas/message.schema';
 
 export type AttachmentDocument = HydratedDocument<Attachment>;
 
+@Schema({ timestamps: true })
 export class Attachment extends BaseEntity {
   @Prop()
   thumbUrl: string;

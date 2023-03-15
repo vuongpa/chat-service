@@ -1,7 +1,7 @@
+import { enqueueSnackbar } from 'notistack';
 import { AnyObject } from '../common/type';
 import { messageUtils } from './message-utils';
 import { request } from './request-utils';
-import { enqueueSnackbar } from 'notistack';
 import { isEmpty } from 'lodash';
 
 export interface FormProps {
@@ -18,7 +18,7 @@ export interface FormProps {
 }
 
 export const formUtils = {
-  submitForm: (submitData: AnyObject = {}, formProps: FormProps) => {
+  submitForm: (formProps: FormProps, submitData: AnyObject = {}) => {
     const {
       endpoint,
       method,
@@ -41,7 +41,7 @@ export const formUtils = {
       })
         .then(response => {
           if (notify) {
-            enqueueSnackbar(successMessage, { variant: 'success', autoHideDuration: 3 * 1000 });
+            enqueueSnackbar(successMessage, { variant: 'success', autoHideDuration: 1000 });
           }
           onGotSuccess?.(response);
         })
@@ -49,7 +49,7 @@ export const formUtils = {
           if (notify) {
             enqueueSnackbar(
               err?.response?.data?.message || errorMessage || messageUtils.errorMessage[method as keyof typeof messageUtils.errorMessage],
-              { variant: 'error', autoHideDuration: 3 * 1000 },
+              { variant: 'error', autoHideDuration: 1000 },
             );
           }
           onGotError?.(err);

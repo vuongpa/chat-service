@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { BaseEntity } from 'src/base/base.schema';
 import { Message } from '../../message/schemas/message.schema';
@@ -6,6 +6,7 @@ import { User } from '../../user/schemas/user.schema';
 
 export type DeletedMessageDocument = HydratedDocument<DeletedMessage>;
 
+@Schema({ timestamps: true })
 export class DeletedMessage extends BaseEntity {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
